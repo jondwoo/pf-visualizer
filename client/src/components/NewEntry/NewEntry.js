@@ -1,44 +1,23 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 
 import FileUploader from '../FileUploader/FileUploader';
 
-import './NewEntry.css';
+import NewEntryForm from './NewEntryForm/NewEntryForm';
 
-// eslint-disable-next-line react/prop-types
 const NewEntry = ({ handleFileChange, handleFileUpload }) => {
+  const { handleSubmit, errors, register } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <Container>
-      <Form className="m-5">
-        <Form.Group controlId="transaction">
-          <Form.Row>
-            <Col>
-              <Form.Label>Amount</Form.Label>
-              <Form.Control type="number" step="0.01" />
-            </Col>
-            <Col>
-              <Form.Label>Type</Form.Label>
-              <Form.Control as="select">
-                <option>Expense</option>
-                <option>Income</option>
-              </Form.Control>
-            </Col>
-          </Form.Row>
-        </Form.Group>
-        <Form.Group controlId="category">
-          <Form.Label>Category</Form.Label>
-          <Form.Control type="text" />
-        </Form.Group>
-        <Form.Group controlId="description">
-          <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+      <Form onSubmit={handleSubmit(onSubmit)} className="m-5">
+        <NewEntryForm register={register} errors={errors} />
         <p className="text-center mt-5">OR</p>
         <FileUploader
           handleFileChange={handleFileChange}
@@ -49,4 +28,8 @@ const NewEntry = ({ handleFileChange, handleFileUpload }) => {
   );
 };
 
+NewEntry.propTypes = {
+  handleFileChange: PropTypes.func,
+  handleFileUpload: PropTypes.func,
+};
 export default NewEntry;

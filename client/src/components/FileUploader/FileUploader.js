@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import './FileUploader.css';
+
 // eslint-disable-next-line react/prop-types
 const FileUploader = ({ handleFileChange, handleFileUpload }) => {
   return (
@@ -13,7 +15,7 @@ const FileUploader = ({ handleFileChange, handleFileUpload }) => {
         onChange={(e) => handleFileChange(e)}
       />
 
-      <Button className="btn btn-success btn-block" onClick={handleFileUpload}>
+      <Button block className="btn-success mt-3" onClick={handleFileUpload}>
         Upload
       </Button>
     </Form.Group>
