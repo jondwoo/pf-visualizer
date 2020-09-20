@@ -3,7 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-const NewEntry = () => {
+
+import FileUploader from '../FileUploader/FileUploader';
+
+import './NewEntry.css';
+
+// eslint-disable-next-line react/prop-types
+const NewEntry = ({ handleFileChange, handleFileUpload }) => {
   return (
     <Container>
       <Form className="m-5">
@@ -33,6 +39,11 @@ const NewEntry = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        <p className="text-center mt-5">OR</p>
+        <FileUploader
+          handleFileChange={handleFileChange}
+          handleFileUpload={handleFileUpload}
+        />
       </Form>
     </Container>
   );

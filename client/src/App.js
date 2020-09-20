@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 
-import FileUploader from './components/FileUploader/FileUploader';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -20,7 +19,7 @@ const App = () => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUploadClick = async () => {
+  const handleFileUpload = async () => {
     const data = new FormData();
     data.append('file', selectedFile);
     try {
@@ -40,12 +39,14 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/new" component={NewEntry} />
           <Route
-            path="/upload-csv"
-            component={FileUploader}
-            handleFileChange={handleFileChange}
-            handleFileUpload={handleUploadClick}
+            path="/new"
+            render={() => (
+              <NewEntry
+                handleFileChange={handleFileChange}
+                handleFileUpload={handleFileUpload}
+              />
+            )}
           />
           <Redirect to="/" />
         </Switch>

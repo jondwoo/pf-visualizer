@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <Navbar.Brand href="/">PF Visualizer</Navbar.Brand>
+      <Navbar.Brand href="/">Personal Finance Visualizer</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
