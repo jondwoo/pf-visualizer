@@ -25,7 +25,7 @@ const NewEntryForm = ({ register, errors }) => {
           </Col>
           <Col>
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" ref={register} name="type">
               <option>Expense</option>
               <option>Income</option>
             </Form.Control>
