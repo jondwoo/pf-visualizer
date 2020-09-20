@@ -1,6 +1,6 @@
 const csv = require('fast-csv');
 const fs = require('fs');
-const validateCsvData = require('../middleware/validate-csv');
+const validateCsvData = require('../../middleware/validate-csv');
 
 const parseFileController = (req, res) => {
   const fileRows = [];

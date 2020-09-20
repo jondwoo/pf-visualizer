@@ -20,7 +20,7 @@ const Navigation = () => {
         </Nav>
         <NavDropdown.Divider />
         <Nav className="flex-col">
-          <Nav.Item className="mr-md-2">
+          <Nav.Item className="mr-md-3">
             <Button variant="outline-success" size="lg" block>
               Login
             </Button>
