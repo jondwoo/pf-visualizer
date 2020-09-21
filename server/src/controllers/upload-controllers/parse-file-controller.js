@@ -16,7 +16,7 @@ const parseFileController = (req, res) => {
 
       const validationError = validateCsvData(fileRows);
       if (validationError) {
-        return res.status(403).json({ error: validationError });
+        return res.status(400).json({ error: validationError });
       }
       //else process "fileRows" and respond
       return res.json({ message: 'valid csv', fileRows: fileRows });

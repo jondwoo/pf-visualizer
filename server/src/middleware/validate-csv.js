@@ -13,15 +13,16 @@ const validateCsvData = (rows) => {
 
 const validateCsvRow = (row) => {
   if (!row[0]) {
-    return 'invalid amount';
+    return 'CSV contains no value';
+  } else if (isNaN(Math.sign(row[0]))) {
+    return 'amount is not a number';
   } else if (!row[1]) {
-    return 'invalid description';
+    return 'must include description';
   } else if (!row[2]) {
-    return 'invalid category';
+    return 'must include category';
   } else if (!moment(row[3], 'MM/DD').isValid()) {
-    return 'invalid date';
+    return 'must include date';
   }
-  return;
 };
 
 module.exports = validateCsvData;
