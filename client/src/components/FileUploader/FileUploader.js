@@ -17,7 +17,10 @@ const FileUploader = () => {
     data.append('file', selectedFile);
     try {
       const res = await axios.post('http://localhost:9000/upload/csv', data);
-      console.log(res);
+
+      // convert to modal
+      // show loading spinner
+      alert(res.data.message);
     } catch (error) {
       console.log(error);
     }

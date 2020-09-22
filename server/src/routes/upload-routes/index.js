@@ -1,12 +1,15 @@
 const { Router } = require('express');
 
-const parseFileController = require('../../controllers/upload-controllers/parse-file-controller');
-const entryUploadController = require('../../controllers/upload-controllers/entry-upload-controller');
 const fileUpload = require('../../middleware/file-upload');
+const parseCsv = require('../../middleware/parse-file');
+const {
+  createByCsv,
+  createByEntry,
+} = require('../../controllers/transaction-controllers/');
 
 const router = new Router();
 
-router.post('/csv', fileUpload.single('file'), parseFileController);
-router.post('/entry', entryUploadController);
+router.post('/csv', fileUpload.single('file'), parseCsv, createByCsv);
+router.post('/entry', createByEntry);
 
 module.exports = router;

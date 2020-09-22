@@ -25,3 +25,4 @@ client/yarn-error.log*
 server/node_modules
 server/transactions.csv
 server/tmp
+server/nodemon.json
