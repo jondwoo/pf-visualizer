@@ -8,6 +8,7 @@ const createByEntry = (req, res) => {
     amount: req.body.amount,
     description: req.body.description,
     category: req.body.category,
+    date: req.body.date,
     insert_date: new Date(),
   });
 
@@ -18,7 +19,7 @@ const createByEntry = (req, res) => {
     amount: req.body.amount,
     type: req.body.type,
     category: req.body.category,
-    // date field
+    date: req.body.date,
     description: req.body.description,
   });
 };
@@ -37,7 +38,7 @@ const createByCsv = async (req, res, next) => {
 
     try {
       // already saved in database
-      await createdPlace.save();
+      // await createdPlace.save();
     } catch (err) {
       const error = new HttpError(
         'creating transaction failed, please try again',
