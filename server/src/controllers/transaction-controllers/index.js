@@ -1,8 +1,8 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const HttpError = require('../../models/http-error');
 const Transaction = require('../../models/transaction');
 
-const createByEntry = (req, res) => {
+const createByEntry = async (req, res, next) => {
   const createdPlace = new Transaction({
     type: req.body.type.toLowerCase(),
     amount: req.body.amount,
@@ -12,15 +12,18 @@ const createByEntry = (req, res) => {
     insert_date: new Date(),
   });
 
-  console.log(createdPlace);
+  try {
+    await createdPlace.save();
+  } catch (err) {
+    const error = new HttpError(
+      'creating transaction failed, please try again',
+      500,
+    );
+    return next(error);
+  }
 
   return res.json({
-    message: 'Success',
-    amount: req.body.amount,
-    type: req.body.type,
-    category: req.body.category,
-    date: req.body.date,
-    description: req.body.description,
+    message: 'Insert successful',
   });
 };
 
@@ -37,8 +40,10 @@ const createByCsv = async (req, res, next) => {
     });
 
     try {
-      // already saved in database
-      // await createdPlace.save();
+      const sess = await mongoose.startSession();
+      sess.startTransaction();
+      await createdPlace.save({ session: sess });
+      await sess.commitTransaction();
     } catch (err) {
       const error = new HttpError(
         'creating transaction failed, please try again',
