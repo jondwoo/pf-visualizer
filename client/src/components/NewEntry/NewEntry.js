@@ -10,7 +10,7 @@ import FileUploader from '../FileUploader/FileUploader';
 import NewEntryForm from './NewEntryForm/NewEntryForm';
 
 const NewEntry = () => {
-  const { handleSubmit, errors, register } = useForm();
+  const { handleSubmit, errors, register } = useForm({ mode: 'onBlur' });
 
   const onSubmit = async (data) => {
     try {

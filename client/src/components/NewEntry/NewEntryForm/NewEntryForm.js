@@ -9,14 +9,19 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
 const NewEntryForm = ({ register, errors }) => {
+  const isValidDateFormat = (input) => {
+    return moment(input, 'MM/DD/YYY', true).isValid();
+  };
+
   const inputProps = {
     name: 'date',
+    id: 'date',
     ref: register({
-      // not working
-      validate: (value) => moment(value, 'MM/DD/YYYY').isValid(),
       required: true,
+      validate: (input) => isValidDateFormat(input),
     }),
   };
+
   return (
     <>
       <Form.Group controlId="transaction">
