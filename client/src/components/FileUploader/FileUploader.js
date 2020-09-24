@@ -2,28 +2,36 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { css } from '@emotion/core';
+import FadeLoader from 'react-spinners/FadeLoader';
+
 import './FileUploader.css';
 
-// eslint-disable-next-line react/prop-types
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
+
 const FileUploader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
   const handleClick = async () => {
+    setLoading(true);
     const data = new FormData();
     data.append('file', selectedFile);
     try {
       const res = await axios.post('http://localhost:9000/upload/csv', data);
-
-      // convert to modal
-      // show loading spinner
-      alert(res.data.message);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -35,10 +43,18 @@ const FileUploader = () => {
         multiple=""
         onChange={(e) => handleChange(e)}
       />
-
-      <Button block className="btn-success mt-3" onClick={handleClick}>
-        Upload
-      </Button>
+      {loading ? (
+        <FadeLoader
+          css={override}
+          size={50}
+          color={'#74767E'}
+          loading={loading}
+        />
+      ) : (
+        <Button block className="btn-success mt-3" onClick={handleClick}>
+          Upload
+        </Button>
+      )}
     </Form.Group>
   );
 };

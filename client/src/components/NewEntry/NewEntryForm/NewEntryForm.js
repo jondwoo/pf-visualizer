@@ -1,94 +1,53 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import Datetime from 'react-datetime';
+import FadeLoader from 'react-spinners/FadeLoader';
+import { css } from '@emotion/core';
+
+import TransactionAmt from './TransactionAmt/TransactionAmt';
+import TransactionType from './TransactionType/TransactionType';
+import TransactionCategory from './TransactionCategory/TransactionCategory';
+import TransactionDate from './TransactionDate/TransactionDate';
+import TransactionDesc from './TransactionDesc/TransactionDesc';
 
 import 'react-datetime/css/react-datetime.css';
 
-const NewEntryForm = ({ register, errors }) => {
-  const isValidDateFormat = (input) => {
-    return moment(input, 'MM/DD/YYY', true).isValid();
-  };
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
 
-  const inputProps = {
-    name: 'date',
-    id: 'date',
-    ref: register({
-      required: true,
-      validate: (input) => isValidDateFormat(input),
-    }),
-  };
-
+const NewEntryForm = ({ loading }) => {
   return (
     <>
-      <Form.Group controlId="transaction">
+      <Form.Group controlId="amount-type">
         <Form.Row>
-          <Col>
-            <Form.Label>Amount</Form.Label>
-            <Form.Control
-              type="number"
-              step="0.01"
-              ref={register({ required: true })}
-              name="amount"
-            />
-            {errors.amount && (
-              <Form.Text className="text-danger">
-                This field is required
-              </Form.Text>
-            )}
-          </Col>
-          <Col>
-            <Form.Label>Type</Form.Label>
-            <Form.Control as="select" ref={register} name="type">
-              <option>Expense</option>
-              <option>Income</option>
-            </Form.Control>
-          </Col>
+          <TransactionAmt />
+          <TransactionType />
         </Form.Row>
       </Form.Group>
-      <Form.Group controlId="category">
+      <Form.Group controlId="category-date">
         <Form.Row>
-          <Col>
-            <Form.Label>Category</Form.Label>
-            <Form.Control
-              name="category"
-              type="text"
-              ref={register({ required: true })}
-            />
-            {errors.category && (
-              <Form.Text className="text-danger">
-                This field is required
-              </Form.Text>
-            )}
-          </Col>
-          <Col>
-            <Form.Label>Date</Form.Label>
-            <Datetime inputProps={inputProps} timeFormat={false} />
-            {errors.date && (
-              <Form.Text className="text-danger">
-                This field is required
-              </Form.Text>
-            )}
-          </Col>
+          <TransactionCategory />
+          <TransactionDate />
         </Form.Row>
       </Form.Group>
       <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          name="description"
-          as="textarea"
-          ref={register({ required: true })}
-        />
-        {errors.description && (
-          <Form.Text className="text-danger">This field is required</Form.Text>
-        )}
+        <TransactionDesc />
       </Form.Group>
-      <Button block variant="primary" type="submit">
-        Submit
-      </Button>
+      {loading ? (
+        <FadeLoader
+          css={override}
+          size={50}
+          color={'#74767E'}
+          loading={loading}
+        />
+      ) : (
+        <Button block variant="primary" type="submit">
+          Submit
+        </Button>
+      )}
     </>
   );
 };
@@ -96,6 +55,7 @@ const NewEntryForm = ({ register, errors }) => {
 NewEntryForm.propTypes = {
   register: PropTypes.func,
   errors: PropTypes.object,
+  loading: PropTypes.string,
 };
 
 export default NewEntryForm;
