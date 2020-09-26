@@ -58,5 +58,41 @@ const createByCsv = async (req, res, next) => {
   });
 };
 
+const getCurrentYear = async (req, res, next) => {
+  const currentYear = new Date().getFullYear();
+
+  const startDate = `01-01-${currentYear}`;
+  const endDate = `12-31-${currentYear}`;
+
+  let transactions;
+
+  try {
+    transactions = await Transaction.find({
+      date: {
+        $gte: new Date(new Date(startDate).setHours('00', '00', '00')),
+        $lte: new Date(new Date(endDate).setHours('23', '59', '59')),
+      },
+    }).sort({ date: 'asc' });
+
+    if (!transactions) {
+      return res.status(404).json({
+        status: 'failure',
+        message: 'Could not retrieve transactions',
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: transactions,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'failure',
+      error: error.message,
+    });
+  }
+};
+
 exports.createByEntry = createByEntry;
 exports.createByCsv = createByCsv;
+exports.getCurrentYear = getCurrentYear;
