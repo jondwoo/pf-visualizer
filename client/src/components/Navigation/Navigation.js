@@ -23,12 +23,12 @@ const Navigation = () => {
           <NavDropdown.Divider />
           <Nav className="flex-col">
             <Nav.Item className="mr-md-3">
-              <Button variant="outline-success" size="lg" block>
+              <Button variant="outline-success" size="sm" block>
                 Login
               </Button>
             </Nav.Item>
             <Nav.Item>
-              <Button variant="outline-success" size="lg" block>
+              <Button variant="outline-success" size="sm" block>
                 Signup
               </Button>
             </Nav.Item>

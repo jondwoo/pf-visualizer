@@ -9,6 +9,7 @@ const TransactionAmt = () => {
     <>
       <Col>
         <Form.Label>Amount</Form.Label>
+        {/* letter 'e' gets through for some reason */}
         <Form.Control
           type="number"
           step="0.01"
