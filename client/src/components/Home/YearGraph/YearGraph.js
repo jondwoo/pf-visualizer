@@ -22,9 +22,11 @@ const YearGraph = () => {
     let months = [];
 
     if (allTransactions.length) {
-      for (const monthlyTransaction of allTransactions) {
-        for (const month in monthlyTransaction) {
-          for (const transaction of monthlyTransaction[month]) {
+      for (const monthlyTransactions of allTransactions) {
+        const transactions = Object.values(monthlyTransactions);
+
+        for (const transactionGroup of transactions) {
+          for (const transaction of transactionGroup) {
             let monthName = new Date(transaction.date).toLocaleString(
               'default',
               {
@@ -32,6 +34,7 @@ const YearGraph = () => {
               },
             );
             months.push(monthName);
+            break;
           }
         }
       }
@@ -47,7 +50,9 @@ const YearGraph = () => {
     }
   }, [availableMonths]);
 
-  // get months for current year
+  // TODO: combine all expense for specific month
+  // TODO: same for income
+
   const data = {
     labels: availableMonths,
     datasets: [
