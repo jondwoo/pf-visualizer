@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { Line, Chart } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 
 const YearGraph = () => {
@@ -62,12 +62,12 @@ const YearGraph = () => {
     setAvailableMonths(uniqueMonths);
   }, [allTransactions]);
 
-  useEffect(() => {
-    if (availableMonths.length) {
-      console.log(availableMonths);
-      console.log(allTransactions);
-    }
-  }, [availableMonths, allTransactions]);
+  // useEffect(() => {
+  //   if (availableMonths.length) {
+  //     console.log(availableMonths);
+  //     console.log(allTransactions);
+  //   }
+  // }, [availableMonths, allTransactions]);
 
   const data = {
     labels: availableMonths,
@@ -101,8 +101,8 @@ const YearGraph = () => {
         var gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
         gradientFill.addColorStop(0, 'rgba(119,221,119,0.6)');
         gradientFill.addColorStop(yPos / c.height, 'rgba(119,221,119,0.6)');
-        gradientFill.addColorStop(yPos / c.height, 'rgba(255,82,82,0.5)');
-        gradientFill.addColorStop(1, 'rgba(255,82,82,0.5)');
+        gradientFill.addColorStop(yPos / c.height, 'rgba(255,82, 82,0.5)');
+        gradientFill.addColorStop(1, 'rgba(255, 82, 82,0.5)');
 
         var model =
           x.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].dataset
