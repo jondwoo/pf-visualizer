@@ -23,7 +23,7 @@ const NewEntry = () => {
       });
       console.log(res);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
 
     setLoading(false);

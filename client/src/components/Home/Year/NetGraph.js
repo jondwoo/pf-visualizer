@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { Line } from 'react-chartjs-2';
+import { Line, Chart } from 'react-chartjs-2';
 import axios from 'axios';
 
 const YearGraph = () => {
@@ -67,46 +67,56 @@ const YearGraph = () => {
       console.log(availableMonths);
       console.log(allTransactions);
     }
-  }, [availableMonths]);
+  }, [availableMonths, allTransactions]);
 
   const data = {
     labels: availableMonths,
     datasets: [
       {
-        label: 'Net Savings',
         data: netMonthlyValue,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-        ],
+        backgroundColor: 'rgba(67, 70, 75, 0.3)',
+        borderColor: 'rgba(67, 70, 75, 0.3)',
+        fill: true,
         borderWidth: 1,
       },
     ],
   };
 
   const options = {
-    // legend: { display: false },
+    legend: { display: false },
     title: {
       display: true,
-      text: 'Year in Review',
+      text: 'Year in Review - Net Savings',
     },
   };
+
+  const plugins = [
+    {
+      beforeRender: function (x) {
+        var c = x.chart;
+        var dataset = x.data.datasets[0];
+        var yScale = x.scales['y-axis-0'];
+        var yPos = yScale.getPixelForValue(0);
+
+        var gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
+        gradientFill.addColorStop(0, 'rgba(119,221,119,0.6)');
+        gradientFill.addColorStop(yPos / c.height, 'rgba(119,221,119,0.6)');
+        gradientFill.addColorStop(yPos / c.height, 'rgba(255,82,82,0.5)');
+        gradientFill.addColorStop(1, 'rgba(255,82,82,0.5)');
+
+        var model =
+          x.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].dataset
+            ._model;
+        model.backgroundColor = gradientFill;
+      },
+    },
+  ];
 
   return (
     <Container className="mt-5" style={{ maxWidth: '62%' }}>
       <Card>
         <Container className="mt-5 mb-5" style={{ maxWidth: '95%' }}>
-          <Line data={data} options={options} />
+          <Line data={data} options={options} plugins={plugins} redraw />
         </Container>
       </Card>
     </Container>
