@@ -13,15 +13,18 @@ const validateCsvData = (rows) => {
 
 const validateCsvRow = (row) => {
   if (!row[0]) {
-    return 'CSV contains no value';
+    return 'Invalid parse. CSV contains no value';
   } else if (isNaN(Math.sign(row[0]))) {
-    return 'amount is not a number';
+    return 'Invalid parse. Amount is not a number';
   } else if (!row[1]) {
-    return 'must include description';
+    return 'Invalid parse. Must include description';
   } else if (!row[2]) {
-    return 'must include category';
-  } else if (!moment(row[3], 'MM/DD').isValid()) {
-    return 'must include date';
+    return 'Invalid parse. Must include category';
+  } else if (
+    !moment(row[3], 'MM/DD').isValid() ||
+    !moment(row[3], 'MM/DD/YYYY').isValid()
+  ) {
+    return 'Invalid parse. Must include date';
   }
 };
 

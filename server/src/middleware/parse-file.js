@@ -11,18 +11,15 @@ const parseCsv = (req, res, next) => {
       fileRows.push(data); // push each row
     })
     .on('end', () => {
-      // console.log(fileRows); //contains array of arrays. Each inner array represents row of the csv file, with each element of it a column
       fs.unlinkSync(req.file.path); // remove temp file
-      //process "fileRows" and respond
 
       const validationError = validateCsvData(fileRows);
       if (validationError) {
-        return next(new HttpError(validationError, 422));
+        const error = new HttpError(validationError, 422);
+        return next(error);
       }
       req.fileRows = fileRows;
       next();
-      //else process "fileRows" and respond
-      // return res.json({ message: 'valid csv', fileRows: fileRows });
     });
 };
 

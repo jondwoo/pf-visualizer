@@ -10,23 +10,21 @@ const PORT = 9000;
 // app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
-app.use('/upload', uploadRoutes);
 
+app.use('/upload', uploadRoutes);
 app.use('/current', currentRoutes);
 
-app.use((req, res, next) => {
-  const error = new Error('Not Found');
-  error.status = 404;
-  next(error);
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not Found' });
 });
 
-app.use((error, req, res) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+
+  res.status(error.code || 500);
+  res.json({ message: error.message || 'an unknown error occurred' });
 });
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fmo1o.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
