@@ -28,7 +28,7 @@ const FileUploader = () => {
       const res = await axios.post('http://localhost:9000/upload/csv', data);
       console.log(res);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
 
     setLoading(false);

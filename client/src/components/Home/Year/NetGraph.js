@@ -7,6 +7,8 @@ import axios from 'axios';
 const YearGraph = () => {
   const [allTransactions, setAllTransactions] = useState([]);
   const [availableMonths, setAvailableMonths] = useState([]);
+  const [netMonthlyValue, setNetMonthlyValue] = useState([]);
+
   // get transactions for current year
   useEffect(() => {
     const fetchCurrentYearData = async () => {
@@ -20,25 +22,41 @@ const YearGraph = () => {
 
   useEffect(() => {
     let months = [];
+    let monthlyNet = [];
 
     if (allTransactions.length) {
       for (const monthlyTransactions of allTransactions) {
         const transactions = Object.values(monthlyTransactions);
 
         for (const transactionGroup of transactions) {
+          let monthNet = 0;
           for (const transaction of transactionGroup) {
-            let monthName = new Date(transaction.date).toLocaleString(
+            const monthName = new Date(transaction.date).toLocaleString(
               'default',
               {
                 month: 'long',
               },
             );
+
+            if (transaction.type === 'expense') {
+              monthNet -= transaction.amount;
+            } else {
+              monthNet += transaction.amount;
+            }
+
             months.push(monthName);
-            break;
           }
+          monthlyNet.push(monthNet);
         }
       }
     }
+    let x = 0;
+    let len = monthlyNet.length;
+    while (x < len) {
+      monthlyNet[x] = monthlyNet[x].toFixed(2);
+      x++;
+    }
+    setNetMonthlyValue(monthlyNet);
 
     const uniqueMonths = [...new Set(months)];
     setAvailableMonths(uniqueMonths);
@@ -47,18 +65,16 @@ const YearGraph = () => {
   useEffect(() => {
     if (availableMonths.length) {
       console.log(availableMonths);
+      console.log(allTransactions);
     }
   }, [availableMonths]);
-
-  // TODO: combine all expense for specific month
-  // TODO: same for income
 
   const data = {
     labels: availableMonths,
     datasets: [
       {
-        label: 'Expense',
-        data: [2500, 1490, 1890, 2349],
+        label: 'Net Savings',
+        data: netMonthlyValue,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 99, 132, 0.2)',
@@ -75,27 +91,6 @@ const YearGraph = () => {
         ],
         borderWidth: 1,
       },
-      // {
-      //   label: 'Income',
-      //   data: [1700, 2000, 1500],
-      //   backgroundColor: [
-      //     'rgba(255, 99, 132, 0.2)',
-      //     'rgba(54, 162, 235, 0.2)',
-      //     'rgba(255, 206, 86, 0.2)',
-      //     'rgba(75, 192, 192, 0.2)',
-      //     'rgba(153, 102, 255, 0.2)',
-      //     'rgba(255, 159, 64, 0.2)',
-      //   ],
-      //   borderColor: [
-      //     'rgba(255, 99, 132, 1)',
-      //     'rgba(54, 162, 235, 1)',
-      //     'rgba(255, 206, 86, 1)',
-      //     'rgba(75, 192, 192, 1)',
-      //     'rgba(153, 102, 255, 1)',
-      //     'rgba(255, 159, 64, 1)',
-      //   ],
-      //   borderWidth: 1,
-      // },
     ],
   };
 
@@ -108,7 +103,7 @@ const YearGraph = () => {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: '60%' }}>
+    <Container className="mt-5" style={{ maxWidth: '62%' }}>
       <Card>
         <Container className="mt-5 mb-5" style={{ maxWidth: '95%' }}>
           <Line data={data} options={options} />

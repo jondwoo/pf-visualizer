@@ -1,10 +1,10 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import YearGraph from './YearGraph/YearGraph';
+import YearNetGraph from './Year/NetGraph';
 
 const Home = () => {
-  return <YearGraph />;
+  return <YearNetGraph />;
 };
 
 export default Home;
