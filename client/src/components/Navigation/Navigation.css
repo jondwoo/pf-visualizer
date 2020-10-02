@@ -1,0 +1,24 @@
+.navbar {
+  height: 68px;
+}
+
+.navbar-brand {
+  font-size: 1rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+}
+
+.navbar-light {
+  background-color: #152e4d;
+  border-color: #152e4d;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #6e84a3 !important;
+}
+
+.navbar-brand {
+  color: white !important;
+}

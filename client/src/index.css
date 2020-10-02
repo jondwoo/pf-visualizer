@@ -1,4 +1,12 @@
 body {
   margin: 0;
-  background-color: red;
+  font-family: 'Cerebri Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #12263f;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }

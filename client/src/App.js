@@ -8,25 +8,27 @@ import {
 
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
-import About from './components/About/About';
-import NewEntry from './components/NewEntry/NewEntry';
+// import About from './components/About/About';
+// import NewEntry from './components/NewEntry/NewEntry';
 
-const App = () => {
+import './App.css';
+
+function App() {
   return (
     <Router>
-      <div>
-        <Navigation />
+      <Navigation />
+      <div className="main-content">
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
+          {/* <Route path="/about" component={About} /> */}
           {/* if you want to pass props to route, render the component */}
           {/* <Route path="/new" render={() => <NewEntry />} /> */}
-          <Route path="/new" component={NewEntry} />
+          {/* <Route path="/new" component={NewEntry} /> */}
           <Redirect to="/" />
         </Switch>
       </div>
     </Router>
   );
-};
+}
 
 export default App;

@@ -1,41 +1,36 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
+
+import './Navigation.css';
 
 const Navigation = () => {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <Container fluid style={{ maxWidth: '1560px' }}>
-        <Navbar.Brand href="/">Personal Finance Visualizer</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Item>
-              <Nav.Link href="/new">New Entry</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="/about">About</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <NavDropdown.Divider />
-          <Nav className="flex-col">
-            <Nav.Item className="mr-md-3">
-              <Button variant="outline-success" size="sm" block>
-                Login
-              </Button>
-            </Nav.Item>
-            <Nav.Item>
-              <Button variant="outline-success" size="sm" block>
-                Signup
-              </Button>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav className="navbar navbar-expand-lg navbar-light">
+      <div className="container">
+        <a className="navbar-brand" href="/">
+          PFV
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">
+                Home
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
