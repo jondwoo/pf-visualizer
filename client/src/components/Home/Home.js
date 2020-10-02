@@ -115,24 +115,24 @@ const Home = () => {
                   >
                     <a
                       className="text-uppercase nav-link active"
-                      style={{ letterSpacing: '1px', fontSize: '0.625rem' }}
-                      id="nav-home-tab"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-line-year"
                       data-toggle="tab"
-                      href="#nav-home"
+                      href="#line-year"
                       role="tab"
-                      aria-controls="nav-home"
+                      aria-controls="nav-line-year"
                       aria-selected="true"
                     >
                       Year
                     </a>
                     <a
                       className="text-uppercase nav-link"
-                      style={{ letterSpacing: '1px', fontSize: '0.625rem' }}
-                      id="nav-profile-tab"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-line-month"
                       data-toggle="tab"
-                      href="#nav-profile"
+                      href="#line-month"
                       role="tab"
-                      aria-controls="nav-profile"
+                      aria-controls="nav-line-month"
                       aria-selected="false"
                     >
                       Month
@@ -143,7 +143,26 @@ const Home = () => {
                 {/* SWITCH */}
               </div>
               {/* LINE CHART */}
-              <div className="card-body">chart</div>
+              <div className="card-body">
+                <div className="tab-content" id="nav-tabContent">
+                  <div
+                    className="tab-pane fade show active"
+                    id="line-year"
+                    role="tabpanel"
+                    aria-labelledby="nav-line-year"
+                  >
+                    YEAR TEST
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="line-month"
+                    role="tabpanel"
+                    aria-labelledby="nav-line-month"
+                  >
+                    MONTH TEST
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* CATEGORIES CARD */}
@@ -152,8 +171,61 @@ const Home = () => {
               {/* HEADER */}
               <div className="card-header">
                 <h4 className="card-header-title">Categories</h4>
+
+                {/* TABS */}
+                <nav>
+                  <div
+                    className="nav nav-tabs nav-tabs-sm card-header-tabs"
+                    id="nav-tab"
+                    role="tablist"
+                  >
+                    <a
+                      className="text-uppercase nav-link active"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-year-categories"
+                      data-toggle="tab"
+                      href="#year-categories"
+                      role="tab"
+                      aria-controls="nav-year-categories"
+                      aria-selected="true"
+                    >
+                      Year
+                    </a>
+                    <a
+                      className="text-uppercase nav-link"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-month-categories"
+                      data-toggle="tab"
+                      href="#month-categories"
+                      role="tab"
+                      aria-controls="nav-month-categories"
+                      aria-selected="false"
+                    >
+                      Month
+                    </a>
+                  </div>
+                </nav>
               </div>
-              <div className="card-body">CHART</div>
+              <div className="card-body">
+                <div className="tab-content" id="nav-tabContent">
+                  <div
+                    className="tab-pane fade show active"
+                    id="year-categories"
+                    role="tabpanel"
+                    aria-labelledby="nav-year-categories"
+                  >
+                    YEAR TEST
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="month-categories"
+                    role="tabpanel"
+                    aria-labelledby="nav-month-categories"
+                  >
+                    MONTH TEST
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -181,24 +253,24 @@ const Home = () => {
                   >
                     <a
                       className="text-uppercase nav-link active"
-                      style={{ letterSpacing: '1px', fontSize: '0.625rem' }}
-                      id="nav-home-tab"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-bar-year"
                       data-toggle="tab"
-                      href="#nav-home"
+                      href="#bar-year"
                       role="tab"
-                      aria-controls="nav-home"
+                      aria-controls="nav-bar-year"
                       aria-selected="true"
                     >
                       Year
                     </a>
                     <a
                       className="text-uppercase nav-link"
-                      style={{ letterSpacing: '1px', fontSize: '0.625rem' }}
-                      id="nav-profile-tab"
+                      style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
+                      id="nav-bar-month"
                       data-toggle="tab"
-                      href="#nav-profile"
+                      href="#bar-month"
                       role="tab"
-                      aria-controls="nav-profile"
+                      aria-controls="nav-bar-month"
                       aria-selected="false"
                     >
                       Month
@@ -206,7 +278,26 @@ const Home = () => {
                   </div>
                 </nav>
               </div>
-              <div className="card-body">bargraph</div>
+              <div className="card-body">
+                <div className="tab-content" id="nav-tabContent">
+                  <div
+                    className="tab-pane fade show active"
+                    id="bar-year"
+                    role="tabpanel"
+                    aria-labelledby="nav-bar-year"
+                  >
+                    YEAR TEST
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="bar-month"
+                    role="tabpanel"
+                    aria-labelledby="nav-bar-month"
+                  >
+                    MONTH TEST
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -231,24 +322,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{
-  /* <div className="tab-content" id="nav-tabContent">
-  <div
-    className="tab-pane fade show active"
-    id="nav-home"
-    role="tabpanel"
-    aria-labelledby="nav-home-tab"
-  >
-    test
-  </div>
-  <div
-    className="tab-pane fade"
-    id="nav-profile"
-    role="tabpanel"
-    aria-labelledby="nav-profile-tab"
-  >
-    test
-  </div>
-</div>; */
-}
