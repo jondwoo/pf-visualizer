@@ -4,6 +4,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   return (
+    // fix drop down
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container">
         <a className="navbar-brand" href="/">

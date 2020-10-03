@@ -35,7 +35,7 @@ const Home = () => {
       {/* CARDS */}
       <div className="container">
         <div className="row">
-          <div className="col-12 col-lg-6 col-xl">
+          <div className="col-12 col-xl">
             {/* TOTAL SAVINGS */}
             <div className="card">
               <div className="card-body">
@@ -56,7 +56,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-6 col-xl">
+          <div className="col-12 col-xl">
             {/* TOTAL INCOME */}
             <div className="card">
               <div className="card-body">
@@ -77,7 +77,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-6 col-xl">
+          <div className="col-12 col-xl">
             {/* TOTAL EXPENSE */}
             <div className="card">
               <div className="card-body">
@@ -242,7 +242,7 @@ const Home = () => {
           <div className="col-12 col-xl-8">
             <div className="card">
               <div className="card-header">
-                <h4 className="card-header-title">bar graph</h4>
+                <h4 className="card-header-title">Income to Expense</h4>
 
                 {/* TABS */}
                 <nav>
