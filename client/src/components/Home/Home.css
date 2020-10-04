@@ -1,5 +1,6 @@
 a {
   text-decoration: none;
+  background-color: transparent;
 }
 
 .h1,
@@ -144,4 +145,17 @@ h6 {
 
 .nav-link {
   padding: 1.2rem 0.5rem;
+}
+
+.nav-tabs .nav-link {
+  padding: 1.3rem 0;
+  border-bottom: 1px solid transparent;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  margin-left: 1rem;
+}
+
+.nav-link:hover {
+  color: #3b506c;
 }
