@@ -5,7 +5,7 @@ import classnames from 'classnames';
 const TabLabel = ({ active, tabId, tabHref, tabAriaControls, tabTitle }) => {
   return (
     <a
-      className={classnames('text-uppercase', 'nav-link', active && 'active')}
+      className={classnames('nav-link', active && 'active')}
       style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
       id={tabId}
       data-toggle="tab"

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const PieChart = ({ tabId, tabAriaLabel, content, show, active }) => {
+const PieChart = ({ tabId, tabAriaLabel, data, show, active }) => {
   return (
     <div
       className={classnames(
@@ -15,7 +15,7 @@ const PieChart = ({ tabId, tabAriaLabel, content, show, active }) => {
       role="tabpanel"
       aria-labelledby={tabAriaLabel}
     >
-      {content}
+      {data}
     </div>
   );
 };
@@ -25,7 +25,7 @@ export default PieChart;
 PieChart.propTypes = {
   tabId: PropTypes.string,
   tabAriaLabel: PropTypes.string,
-  content: PropTypes.string,
+  data: PropTypes.string,
   show: PropTypes.bool,
   active: PropTypes.bool,
 };

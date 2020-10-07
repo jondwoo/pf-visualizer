@@ -21,43 +21,6 @@ h6 {
   color: #fff;
 }
 
-.h1,
-h1 {
-  font-size: 1.625rem;
-}
-
-.h4,
-h4 {
-  font-size: 0.9375rem;
-  color: #fff;
-}
-
-.h2,
-h2 {
-  font-size: 1.25rem;
-}
-
-.h6,
-h6 {
-  /* margin-bottom: 0.5625rem; */
-  font-size: 0.625rem;
-}
-
-.header {
-  margin-bottom: 2rem;
-}
-
-.header-body {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #1e3a5c;
-}
-
-.header-pretitle {
-  letter-spacing: 0.08em;
-  color: #6e84a3;
-}
-
 .btn-primary {
   color: #fff !important;
   background-color: #2c7be5 !important;

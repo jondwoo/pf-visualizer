@@ -9,7 +9,7 @@ const Tab = () => {
   return (
     <nav>
       <div
-        className="nav nav-tabs nav-tabs-sm card-header-tabs"
+        className="nav nav-tabs card-header-tabs"
         id="nav-tab"
         role="tablist"
       >

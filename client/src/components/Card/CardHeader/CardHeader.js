@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import Tab from '../CardHeader/Tab/Tab';
 
+import './CardHeader.css';
+
 const CardHeader = ({ title, tabs }) => {
   return (
     <div className="card-header">
-      <h4 className="card-header-title mb-0">{title}</h4>
+      <h4 className="card-header-title mb-0 text-uppercase">{title}</h4>
       {tabs && <Tab />}
     </div>
   );

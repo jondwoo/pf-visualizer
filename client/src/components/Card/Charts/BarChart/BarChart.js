@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const LineChart = ({ tabId, tabAriaLabel, content, show, active }) => {
+const BarChart = ({ tabId, tabAriaLabel, data, show, active }) => {
   return (
     <div
       className={classnames(
@@ -15,17 +15,17 @@ const LineChart = ({ tabId, tabAriaLabel, content, show, active }) => {
       role="tabpanel"
       aria-labelledby={tabAriaLabel}
     >
-      {content}
+      {data}
     </div>
   );
 };
 
-export default LineChart;
+export default BarChart;
 
-LineChart.propTypes = {
+BarChart.propTypes = {
   tabId: PropTypes.string,
   tabAriaLabel: PropTypes.string,
-  content: PropTypes.string,
+  data: PropTypes.string,
   show: PropTypes.bool,
   active: PropTypes.bool,
 };

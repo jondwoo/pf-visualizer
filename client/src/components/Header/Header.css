@@ -1,0 +1,14 @@
+.header-body {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #1e3a5c;
+}
+
+.header-pretitle {
+  font-size: 0.625rem;
+  color: #6e84a3;
+}
+
+.header-title {
+  color: #fff;
+  font-size: 1.625rem;
+}

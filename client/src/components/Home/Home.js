@@ -1,92 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
+import classnames from 'classnames';
 
 import Header from '../Header/Header';
-import TotalsCard from '../Cards/TotalsCard/TotalsCard';
-import CardHeader from '../Cards/CardHeader/CardHeader';
-import LineChart from '../Cards/Charts/LineChart/LineChart';
-import PieChart from '../Cards/Charts/PieChart/PieChart';
-import BarChart from '../Cards/Charts/BarChart/BarChart';
-import { TabContext } from '../Cards/CardHeader/Tab/TabContext';
+import Card from '../Card/Card';
+import { TabContext } from '../Card/CardHeader/Tab/TabContext';
 
-import './Home.css';
+// import './Home.css';
 
 const Home = () => {
+  // const [lineData, setLineData] = useState([]);
+  // const [pieData, setPieData] = useState([]);
+  // const [barData, setBarData] = useState([]);
+
+  // const fetchLineYear = () => {};
+
+  // const fetchLineMonth = () => {};
+
+  // const fetchPieYear = () => {};
+
+  // const fetchPieMonth = () => {};
+
+  // const fetchBarYear = () => {};
+
+  // const fetchBarMonth = () => {};
+
   return (
     <>
       <Header />
 
       {/* CARDS */}
       <div className="container">
+        {/* TOTAL */}
         <div className="row">
           {/* SAVINGS */}
-          <TotalsCard
-            title="Savings"
-            value={4000}
-            percent={1.5}
-            badgeClass="success"
-          />
-          {/* INCOME  */}
-          <TotalsCard
-            title="Income"
-            value={20000}
-            percent={0.7}
-            badgeClass="success"
-          />
+          <div className="col-12 col-xl">
+            <Card
+              title="Total Savings"
+              tabs
+              tabType="savings"
+              cardType="totals"
+            />
+          </div>
+          {/* INCOME */}
+          <div className="col-12 col-xl">
+            <Card
+              title="Total Income"
+              tabs
+              tabType="income"
+              cardType="totals"
+            />
+          </div>
           {/* EXPENSE */}
-          <TotalsCard
-            title="Expense"
-            value={17000}
-            percent={4}
-            badgeClass="danger"
-          />
+          <div className="col-12 col-xl">
+            <Card
+              title="Total Expense"
+              tabs
+              tabType="expense"
+              cardType="totals"
+            />
+          </div>
         </div>
         {/* / .row */}
 
-        <div className="row">
-          {/* NET SAVINGS CARD */}
+        {/* <div className="row">
           <div className="col-12 col-xl-8">
-            <div className="card">
-              <TabContext.Provider
-                value={{
-                  year: {
-                    tabId: 'nav-line-year',
-                    tabHref: '#line-year',
-                    tabAriaControls: 'nav-line-year',
-                  },
-                  month: {
-                    tabId: 'nav-line-month',
-                    tabHref: '#line-month',
-                    tabAriaControls: 'nav-line-month',
-                  },
-                }}
-              >
-                <CardHeader title="Net Savings" tabs />
-              </TabContext.Provider>
+            <TabContext.Provider
+              value={{
+                year: {
+                  tabId: 'year-line',
+                  tabHref: '#year-line',
+                  tabAriaControls: 'year-line',
+                },
+                month: {
+                  tabId: 'month-line',
+                  tabHref: '#month-line',
+                  tabAriaControls: 'month-line',
+                },
+              }}
+            >
+              <Card title="Net Savings" tabs />
+            </TabContext.Provider>
 
-              {/* LINE CHART */}
-              <div className="card-body">
-                <div className="tab-content" id="nav-tabContent">
-                  <LineChart
-                    tabId="line-year"
-                    tabAriaLabel="nav-line-year"
-                    content="YEAR CHART"
-                    show
-                    active
-                  />
-                  <LineChart
-                    tabId="line-month"
-                    tabAriaLabel="nav-line-month"
-                    content="MONTH CHART"
-                  />
-                </div>
+            <div className="card-body">
+              <div className="tab-content" id="nav-tabContent">
+                <LineChart
+                  tabId="line-year"
+                  tabAriaLabel="nav-line-year"
+                  data="YEAR CHART"
+                  show
+                  active
+                />
+                <LineChart
+                  tabId="line-month"
+                  tabAriaLabel="nav-line-month"
+                  data="MONTH CHART"
+                />
               </div>
             </div>
           </div>
 
-          {/* CATEGORIES CARD */}
           <div className="col-12 col-xl-4">
             <div className="card">
-              {/* HEADER */}
               <TabContext.Provider
                 value={{
                   year: {
@@ -109,23 +123,22 @@ const Home = () => {
                   <PieChart
                     tabId="pie-year"
                     tabAriaLabel="nav-pie-year"
-                    content="YEAR CHART"
+                    data="YEAR CHART"
                     show
                     active
                   />
                   <PieChart
                     tabId="pie-month"
                     tabAriaLabel="nav-pie-month"
-                    content="MONTH CHART"
+                    data="MONTH CHART"
                   />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* / .row */}
+        </div> */}
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12 col-xl-4">
             <div className="card">
               <CardHeader title="Ratio" />
@@ -156,21 +169,20 @@ const Home = () => {
                   <BarChart
                     tabId="pie-year"
                     tabAriaLabel="nav-pie-year"
-                    content="YEAR CHART"
+                    data="YEAR CHART"
                     show
                     active
                   />
                   <BarChart
                     tabId="pie-month"
                     tabAriaLabel="nav-pie-month"
-                    content="MONTH CHART"
+                    data="MONTH CHART"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* / .row */}
 
         <div className="row">
           <div className="col-12">
@@ -181,8 +193,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-        {/* / .row */}
+        </div> */}
       </div>
     </>
   );

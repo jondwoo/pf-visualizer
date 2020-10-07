@@ -1,0 +1,43 @@
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #1e3a5c;
+}
+
+.card-header > :first-child {
+  flex: 1;
+}
+
+h4 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent transparent #2c7be5;
+}
+
+.nav-link:not(.active) {
+  color: #95aac9;
+}
+
+.nav-tabs .nav-link {
+  padding: 1rem 0;
+  border-bottom: 1px solid transparent;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  margin-right: 0.5rem;
+  font-size: 0.8rem !important;
+}
+
+.nav-link:hover {
+  color: #4c6c97;
+}
