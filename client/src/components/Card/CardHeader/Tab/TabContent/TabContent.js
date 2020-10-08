@@ -1,8 +1,10 @@
-import { render } from '@testing-library/react';
 import React, { useContext } from 'react';
 
-import Totals from '../../../CardBody/Totals/Totals';
+import Totals from '../TabContent/Totals/Totals';
+import LineChart from '../TabContent/Charts/LineChart/LineChart';
 import { TabContext } from '../TabContext';
+import PieChart from './Charts/PieChart/PieChart';
+import BarChart from './Charts/BarChart/BarChart';
 
 const TabContent = () => {
   const { cardType } = useContext(TabContext);
@@ -28,8 +30,29 @@ const TabContent = () => {
         />
       </div>
     );
+  } else if (cardType === 'line-chart') {
+    return (
+      <div className="tab-content" id="nav-tabContent">
+        <LineChart timeframe="year" data="YEAR CHART" active show />
+        <LineChart timeframe="month" data="MONTH CHART" />
+      </div>
+    );
+  } else if (cardType === 'pie-chart') {
+    return (
+      <div className="tab-content" id="nav-tabContent">
+        <PieChart timeframe="year" data="YEAR CHART" active show />
+        <PieChart timeframe="month" data="MONTH CHART" />
+      </div>
+    );
+  } else if (cardType === 'bar-chart') {
+    return (
+      <div className="tab-content" id="nav-tabContent">
+        <BarChart timeframe="year" data="YEAR CHART" active show />
+        <BarChart timeframe="month" data="MONTH CHART" />
+      </div>
+    );
   } else {
-    return <p>test</p>;
+    return <div className="table-responsive mb-0">TABLE</div>;
   }
 };
 

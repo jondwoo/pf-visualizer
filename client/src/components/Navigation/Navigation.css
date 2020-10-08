@@ -2,6 +2,11 @@
   height: 68px;
 }
 
+.navbar {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+
 .navbar-brand {
   font-size: 1rem;
 }
