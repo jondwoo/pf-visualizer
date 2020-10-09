@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { TabContext } from '../../../TabContext';
+import { TabContext } from '../../../../CardHeader/Tab/TabContext';
 
-const LineChart = ({ timeframe, data, active, show }) => {
+const BarChart = ({ timeframe, data, active, show }) => {
   const { tabType } = useContext(TabContext);
 
   return (
@@ -24,9 +24,9 @@ const LineChart = ({ timeframe, data, active, show }) => {
   );
 };
 
-export default LineChart;
+export default BarChart;
 
-LineChart.propTypes = {
+BarChart.propTypes = {
   timeframe: PropTypes.string,
   active: PropTypes.bool,
   show: PropTypes.bool,

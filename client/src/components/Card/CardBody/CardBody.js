@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './CardBody.css';
-import TabContent from '../CardHeader/Tab/TabContent/TabContent';
+import TabContent from './TabContent/TabContent';
 
 const CardBody = () => {
   return (

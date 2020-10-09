@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+// import { useTabUpdate } from '../TabContext';
+
 const TabLabel = ({ active, tabId, tabHref, tabAriaControls, tabTitle }) => {
+  // const updateTab = useTabUpdate();
+
   return (
     <a
-      className={classnames('nav-link', active && 'active')}
+      // onClick={(e) => updateTab(e)}
+      className={classnames('nav-link', active && 'active', 'mr-3')}
       style={{ letterSpacing: '0.8px', fontSize: '0.625rem' }}
       id={tabId}
       data-toggle="tab"

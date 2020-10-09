@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { TabContext } from '../../TabContext';
+import { TabContext } from '../../../CardHeader/Tab/TabContext';
 
 import './Totals.css';
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import Totals from '../TabContent/Totals/Totals';
 import LineChart from '../TabContent/Charts/LineChart/LineChart';
-import { TabContext } from '../TabContext';
+import { TabContext } from '../../CardHeader/Tab/TabContext';
 import PieChart from './Charts/PieChart/PieChart';
 import BarChart from './Charts/BarChart/BarChart';
 
@@ -33,8 +33,8 @@ const TabContent = () => {
   } else if (cardType === 'line-chart') {
     return (
       <div className="tab-content" id="nav-tabContent">
-        <LineChart timeframe="year" data="YEAR CHART" active show />
-        <LineChart timeframe="month" data="MONTH CHART" />
+        <LineChart timeframe="year" data={[32, 45, 12, 31, 41]} active show />
+        <LineChart timeframe="month" data={[82, 45, 12, 31, 41]} />
       </div>
     );
   } else if (cardType === 'pie-chart') {

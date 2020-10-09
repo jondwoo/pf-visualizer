@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import CardBody from './CardBody/CardBody';
 import CardHeader from './CardHeader/CardHeader';
-import { TabContext } from './CardHeader/Tab/TabContext';
+import { TabProvider } from './CardHeader/Tab/TabContext';
 
 import './Card.css';
 
 const Card = ({ title, tabs, tabType, cardType }) => {
   return (
     <div className="card">
-      <TabContext.Provider
+      <TabProvider
         value={{
           cardType,
           tabType,
@@ -28,7 +28,7 @@ const Card = ({ title, tabs, tabType, cardType }) => {
       >
         <CardHeader title={title} tabs={tabs} />
         <CardBody />
-      </TabContext.Provider>
+      </TabProvider>
     </div>
   );
 };
