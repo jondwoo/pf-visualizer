@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from '../../components/Header/Header';
 import Card from '../../components/Card/Card';
+import { TabProvider } from '../../components/Card/CardHeader/Tab/TabContext';
 
 // import './Home.css';
 
@@ -39,7 +40,7 @@ const Home = () => {
             <Card
               title="Total Savings"
               tabs
-              tabType="savings"
+              tabContentType="savings"
               cardType="totals"
             />
           </div>
@@ -48,7 +49,7 @@ const Home = () => {
             <Card
               title="Total Income"
               tabs
-              tabType="income"
+              tabContentType="income"
               cardType="totals"
             />
           </div>
@@ -57,7 +58,7 @@ const Home = () => {
             <Card
               title="Total Expense"
               tabs
-              tabType="expense"
+              tabContentType="expense"
               cardType="totals"
             />
           </div>
@@ -67,33 +68,38 @@ const Home = () => {
         <div className="row">
           <div className="col-12 col-xl-8">
             {/* LINE CHART */}
-            {/* <Card
+            <Card
               title="Net Savings"
               tabs
-              tabType="line"
+              tabContentType="line"
               cardType="line-chart"
-            /> */}
+            />
           </div>
 
           <div className="col-12 col-xl-4">
             {/* PIE CHART */}
-            {/* <Card title="Categories" tabs tabType="pie" cardType="pie-chart" /> */}
+            <Card
+              title="Categories"
+              tabs
+              tabContentType="pie"
+              cardType="pie-chart"
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12 ">
-            {/* <Card
+            <Card
               title="Income to Expense"
-              tabType="bar"
+              tabContentType="bar"
               cardType="bar-chart"
-            /> */}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12">
-            {/* <Card title="Recent Transactions" cardType="recent-transactiosn" /> */}
+            <Card title="Recent Transactions" cardType="recent-transactiosn" />
           </div>
         </div>
       </div>

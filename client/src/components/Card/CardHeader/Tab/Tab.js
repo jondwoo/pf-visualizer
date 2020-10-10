@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import TabLabel from '../Tab/TabLabel/TabLabel';
-import { TabContext, TabProvider, useTabContext } from './TabContext';
+import { useTabContext } from './TabContext';
 
 const Tab = () => {
   const { year, month } = useTabContext();

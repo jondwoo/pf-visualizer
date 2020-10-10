@@ -5,7 +5,7 @@ import Tab from '../CardHeader/Tab/Tab';
 
 import './CardHeader.css';
 
-const CardHeader = ({ title, tabs }) => {
+const CardHeader = ({ tabs, title }) => {
   return (
     <div className="card-header">
       <h4 className="card-header-title mb-0 text-uppercase">{title}</h4>

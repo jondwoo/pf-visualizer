@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { useTabContext, useTabId } from '../../../CardHeader/Tab/TabContext';
+import { useTabContext } from '../../../CardHeader/Tab/TabContext';
 
 import './Totals.css';
 
-const Totals = ({ timeframe, value, percent, badgeClass, active, show }) => {
-  const { tabType } = useTabContext();
-  const tabLabelId = useTabId();
+const Totals = ({ value, percent, badgeClass, active, show }) => {
+  const { timeframe, tabContentType } = useTabContext();
 
   return (
     <div
@@ -18,9 +17,9 @@ const Totals = ({ timeframe, value, percent, badgeClass, active, show }) => {
         show && 'show',
         active && 'active',
       )}
-      id={`${timeframe}-${tabType}`}
+      id={`${timeframe}-${tabContentType}`}
       role="tabpanel"
-      aria-labelledby={`${timeframe}-${tabType}`}
+      aria-labelledby={`${timeframe}-${tabContentType}`}
     >
       <div className="row align-items-center">
         <div className="col">
@@ -41,7 +40,6 @@ const Totals = ({ timeframe, value, percent, badgeClass, active, show }) => {
 export default Totals;
 
 Totals.propTypes = {
-  timeframe: PropTypes.string,
   value: PropTypes.number,
   percent: PropTypes.number,
   badgeClass: PropTypes.string,
