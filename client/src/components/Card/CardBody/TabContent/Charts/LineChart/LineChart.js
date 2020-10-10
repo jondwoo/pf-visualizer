@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Line } from 'react-chartjs-2';
 
-import { TabContext } from '../../../../CardHeader/Tab/TabContext';
+import {
+  TabContext,
+  useTabContext,
+} from '../../../../CardHeader/Tab/TabContext';
 
 const LineChart = ({ timeframe, data, active, show }) => {
   const [chartData, setChartData] = useState([data]);
-  const { tabType } = useContext(TabContext);
+  const { tabType } = useTabContext();
 
   useEffect(() => {
     const onPageLoad = () => {

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
 import TabLabel from '../Tab/TabLabel/TabLabel';
-import { TabContext } from './TabContext';
+import { TabContext, TabProvider, useTabContext } from './TabContext';
 
 const Tab = () => {
-  const { year, month } = useContext(TabContext);
+  const { year, month } = useTabContext();
 
   return (
     <nav>

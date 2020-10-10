@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { TabContext } from '../../../CardHeader/Tab/TabContext';
+import { useTabContext, useTabId } from '../../../CardHeader/Tab/TabContext';
 
 import './Totals.css';
 
 const Totals = ({ timeframe, value, percent, badgeClass, active, show }) => {
-  const { tabType } = useContext(TabContext);
+  const { tabType } = useTabContext();
+  const tabLabelId = useTabId();
+
   return (
     <div
       className={classnames(
