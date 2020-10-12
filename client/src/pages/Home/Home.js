@@ -65,33 +65,31 @@ const Home = () => {
         {/* / .row */}
 
         <div className="row">
-          <div className="col-12 col-xl-8">
+          <div className="col-12">
             {/* LINE CHART */}
             <Card
               title="Net Savings"
-              tabs
               tabContentType="line"
               cardType="line-chart"
-            />
-          </div>
-
-          <div className="col-12 col-xl-4">
-            {/* PIE CHART */}
-            <Card
-              title="Categories"
-              tabs
-              tabContentType="pie"
-              cardType="pie-chart"
             />
           </div>
         </div>
 
         <div className="row">
-          <div className="col-12 ">
+          <div className="col-12 col-xl-8">
             <Card
               title="Income to Expense"
               tabContentType="bar"
               cardType="bar-chart"
+            />
+          </div>
+          <div className="col-12 col-xl-4">
+            {/* PIE CHART */}
+            <Card
+              title="Categories"
+              tabs
+              tabContentType="doughnut"
+              cardType="doughnut-chart"
             />
           </div>
         </div>

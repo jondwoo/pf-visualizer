@@ -1,28 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { Bar } from 'react-chartjs-2';
 
-import {
-  TabContext,
-  useTabContext,
-} from '../../../../CardHeader/Tab/TabContext';
-
-const BarChart = ({ timeframe, data, active, show }) => {
-  const { tabType } = useTabContext();
-
+const BarChart = ({ data }) => {
+  const options = {
+    responsive: true,
+  };
   return (
-    <div
-      className={classnames(
-        'tab-pane',
-        'fade',
-        show && 'show',
-        active && 'active',
-      )}
-      id={`${timeframe}-${tabType}`}
-      role="tabpanel"
-      aria-labelledby={`${timeframe}-${tabType}`}
-    >
-      {data}
+    <div>
+      <Bar options={options} />
     </div>
   );
 };
