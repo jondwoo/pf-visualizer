@@ -5,6 +5,7 @@ import LineChart from '../TabContent/Charts/LineChart/LineChart';
 import { useTabContext } from '../../CardHeader/Tab/TabContext';
 import DoughnutChart from './Charts/DoughnutChart/DoughnutChart';
 import BarChart from './Charts/BarChart/BarChart';
+import RecentTransactions from './RecentTransactions/RecentTransactions';
 
 const TabContent = () => {
   const { cardType, timeframe } = useTabContext();
@@ -38,9 +39,9 @@ const TabContent = () => {
       </div>
     );
   } else if (cardType === 'bar-chart') {
-    return <BarChart data="YEAR CHART" />;
+    return <BarChart data={[100, 263, 67, 379, 50]} />;
   } else {
-    return <div className="table-responsive mb-0">TABLE</div>;
+    return <RecentTransactions />;
   }
 };
 

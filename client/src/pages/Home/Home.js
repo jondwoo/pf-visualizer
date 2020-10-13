@@ -27,7 +27,7 @@ const Home = () => {
   // year and month tabs not working
   // trying to start from scratch at headers
   return (
-    <>
+    <div className="container" style={{ width: '67rem' }}>
       <Header />
 
       {/* CARDS */}
@@ -65,7 +65,17 @@ const Home = () => {
         {/* / .row */}
 
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-xl-12">
+            <Card
+              title="Income to Expense"
+              tabContentType="bar"
+              cardType="bar-chart"
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12 col-xl-6">
             {/* LINE CHART */}
             <Card
               title="Net Savings"
@@ -73,17 +83,7 @@ const Home = () => {
               cardType="line-chart"
             />
           </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12 col-xl-8">
-            <Card
-              title="Income to Expense"
-              tabContentType="bar"
-              cardType="bar-chart"
-            />
-          </div>
-          <div className="col-12 col-xl-4">
+          <div className="col-12 col-xl-6">
             {/* PIE CHART */}
             <Card
               title="Categories"
@@ -100,7 +100,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
