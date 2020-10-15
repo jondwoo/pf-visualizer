@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './RecentTransactions.css';
 const RecentTransactions = () => {
   return (
     <table className="table">

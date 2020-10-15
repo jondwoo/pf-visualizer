@@ -27,7 +27,7 @@ const Home = () => {
   // year and month tabs not working
   // trying to start from scratch at headers
   return (
-    <div className="container" style={{ width: '67rem' }}>
+    <div className="container" style={{ width: '73rem' }}>
       <Header />
 
       {/* CARDS */}
@@ -66,6 +66,7 @@ const Home = () => {
 
         <div className="row">
           <div className="col-12 col-xl-12">
+            {/* BAR CHART */}
             <Card
               title="Income to Expense"
               tabContentType="bar"

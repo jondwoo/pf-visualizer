@@ -39,7 +39,7 @@ const TabContent = () => {
       </div>
     );
   } else if (cardType === 'bar-chart') {
-    return <BarChart data={[100, 263, 67, 379, 50]} />;
+    return <BarChart data={[100, 263, 67, 379, 500]} />;
   } else {
     return <RecentTransactions />;
   }

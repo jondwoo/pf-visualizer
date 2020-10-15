@@ -12,10 +12,10 @@ const LineChart = ({ data }) => {
         datasets: [
           {
             data: data,
-            backgroundColor: ['rgba(44, 124, 229, 1)'],
-            borderWidth: 4,
+            borderColor: '#2c7ce5',
+            borderWidth: 3,
             pointHitRadius: 150,
-            // fill: 'false',
+            fill: false,
           },
         ],
       });

@@ -5,7 +5,7 @@ import './Navigation.css';
 const Navigation = () => {
   return (
     <nav className="py-3 navbar navbar-expand-lg navbar-light">
-      <div className="container" style={{ width: '65rem' }}>
+      <div className="container" style={{ width: '71.5rem' }}>
         <a href="#" className="navbar-brand">
           PFV
         </a>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 import { useTabContext } from '../../../../CardHeader/Tab/TabContext';
 
@@ -17,9 +17,8 @@ const PieChart = ({ data, active, show }) => {
           {
             data: data,
             backgroundColor: ['rgba(44, 124, 229, 1)', 'rgba(44, 124, 229, 1)'],
-            borderWidth: 4,
+            borderWidth: 0,
             pointHitRadius: 150,
-            // fill: 'false',
           },
         ],
       });
