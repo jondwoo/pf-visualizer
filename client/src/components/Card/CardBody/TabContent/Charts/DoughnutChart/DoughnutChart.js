@@ -5,7 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 import { useTabContext } from '../../../../CardHeader/Tab/TabContext';
 
-const PieChart = ({ data, active, show }) => {
+const DoughnutChart = ({ data, active, show }) => {
   const [chartData, setChartData] = useState([data]);
   const { timeframe, tabContentType } = useTabContext();
 
@@ -45,10 +45,10 @@ const PieChart = ({ data, active, show }) => {
   );
 };
 
-export default PieChart;
+export default DoughnutChart;
 
-PieChart.propTypes = {
+DoughnutChart.propTypes = {
   active: PropTypes.bool,
   show: PropTypes.bool,
-  data: PropTypes.string,
+  data: PropTypes.array,
 };

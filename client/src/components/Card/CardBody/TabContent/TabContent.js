@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Totals from '../TabContent/Totals/Totals';
 import LineChart from '../TabContent/Charts/LineChart/LineChart';
@@ -56,7 +56,12 @@ const TabContent = () => {
       </div>
     );
   } else if (cardType === 'bar-chart') {
-    return <BarChart data={[100, 263, 67, 379, 500]} />;
+    return (
+      <BarChart
+        incomeData={[1700, 1200, 1470, 900, 1300]}
+        expenseData={[1450, 2300, 1499, 990, 1100]}
+      />
+    );
   } else {
     return <RecentTransactions />;
   }

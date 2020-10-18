@@ -8,7 +8,7 @@ const LineChart = ({ data }) => {
   useEffect(() => {
     const onPageLoad = () => {
       setChartData({
-        labels: ['mon', 'tues', 'wed', 'thurs', 'fri'],
+        labels: ['jan', 'aug', 'sept', 'oct', 'nov'],
         datasets: [
           {
             data: data,

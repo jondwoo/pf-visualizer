@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 
-const BarChart = ({ data }) => {
-  const [chartData, setChartData] = useState([data]);
-  console.log(data);
+const BarChart = ({ incomeData, expenseData }) => {
+  const [chartData, setChartData] = useState({});
+
   const options = {
     responsive: true,
     legend: {
@@ -48,13 +48,15 @@ const BarChart = ({ data }) => {
         labels: ['jan', 'aug', 'sept', 'oct', 'nov'],
         datasets: [
           {
-            data: data,
+            label: 'Income',
+            data: incomeData,
             backgroundColor: '#2c7ce5',
             borderWidth: 1,
             pointHitRadius: 150,
           },
           {
-            data: data,
+            label: 'Expense',
+            data: expenseData,
             backgroundColor: '#d2ddec',
             borderWidth: 1,
             pointHitRadius: 150,
@@ -63,7 +65,7 @@ const BarChart = ({ data }) => {
       });
     };
     onPageLoad();
-  }, [data]);
+  }, [incomeData, expenseData]);
 
   return (
     <div>
@@ -78,5 +80,6 @@ BarChart.propTypes = {
   timeframe: PropTypes.string,
   active: PropTypes.bool,
   show: PropTypes.bool,
-  data: PropTypes.string,
+  incomeData: PropTypes.array,
+  expenseData: PropTypes.array,
 };

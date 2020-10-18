@@ -6,29 +6,140 @@ const RecentTransactions = () => {
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Date</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
         </tr>
       </thead>
+      {/* TODO: turn to component */}
+      {/* TODO: overflow off */}
       <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
         </tr>
         <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
         </tr>
         <tr>
-          <th scope="row">3</th>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
+        </tr>
+        <tr>
+          <td scope="row">10/05</td>
+          <td>-29.99</td>
+          <td>gym membership</td>
+          <td>services</td>
+        </tr>
+        <tr>
+          <td scope="row">10/10</td>
+          <td>12.39</td>
+          <td>amazon refund</td>
+          <td>other</td>
+        </tr>
+        <tr>
+          <td scope="row">10/15</td>
+          <td>-300.00</td>
+          <td>gmk olivia++</td>
+          <td>personal</td>
         </tr>
       </tbody>
     </table>

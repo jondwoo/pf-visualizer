@@ -63,25 +63,23 @@ const Home = () => {
           </div>
         </div>
         {/* / .row */}
-
         <div className="row">
           <div className="col-12 col-xl-12">
-            {/* BAR CHART */}
+            {/* LINE CHART */}
             <Card
-              title="Income to Expense"
-              tabContentType="bar"
-              cardType="bar-chart"
+              title="Mothly Net Savings"
+              tabContentType="line"
+              cardType="line-chart"
             />
           </div>
         </div>
-
         <div className="row">
           <div className="col-12 col-xl-6">
-            {/* LINE CHART */}
+            {/* BAR CHART */}
             <Card
-              title="Net Savings"
-              tabContentType="line"
-              cardType="line-chart"
+              title="Monthly Income to Expense"
+              tabContentType="bar"
+              cardType="bar-chart"
             />
           </div>
           <div className="col-12 col-xl-6">
@@ -94,9 +92,8 @@ const Home = () => {
             />
           </div>
         </div>
-
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-xl-12">
             <Card title="Recent Transactions" cardType="recent-transactiosn" />
           </div>
         </div>

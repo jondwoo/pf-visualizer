@@ -3,6 +3,7 @@ import React from 'react';
 import './Navigation.css';
 
 const Navigation = () => {
+  // fix mobile view
   return (
     <nav className="py-3 navbar navbar-expand-lg navbar-light">
       <div className="container" style={{ width: '71.5rem' }}>
