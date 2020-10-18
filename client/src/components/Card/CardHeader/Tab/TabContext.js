@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const TabContext = createContext({});
@@ -12,10 +12,29 @@ export const useTabSelect = () => {
   return useContext(TabSelectContext);
 };
 
+const getIncome = () => {
+  return [20000, 1300];
+};
+
+const getExpense = () => {
+  return [17000, 1500];
+};
+
+const getSavings = () => {
+  // return getIncome() - getExpense();
+  return [3000, -200];
+};
+
 export const TabProvider = ({ children, cardType, tabContentType }) => {
   const [timeframe, setTimeframe] = useState('year');
+  const [totalSavings, setTotalSavings] = useState(getSavings());
+  const [totalIncome, setTotalIncome] = useState(getIncome());
+  const [totalExpense, setTotalExpense] = useState(getExpense());
 
   const tabContent = {
+    totalSavings,
+    totalIncome,
+    totalExpense,
     cardType,
     tabContentType,
     timeframe,

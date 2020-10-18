@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Totals from '../TabContent/Totals/Totals';
 import LineChart from '../TabContent/Charts/LineChart/LineChart';
@@ -8,13 +8,30 @@ import BarChart from './Charts/BarChart/BarChart';
 import RecentTransactions from './RecentTransactions/RecentTransactions';
 
 const TabContent = () => {
-  const { cardType, timeframe } = useTabContext();
+  const {
+    totalSavings,
+    totalIncome,
+    totalExpense,
+    cardType,
+    timeframe,
+    tabContentType,
+  } = useTabContext();
+
+  let totalsValue;
+
+  if (tabContentType === 'savings') {
+    totalsValue = totalSavings;
+  } else if (tabContentType === 'income') {
+    totalsValue = totalIncome;
+  } else if (tabContentType === 'expense') {
+    totalsValue = totalExpense;
+  }
 
   if (cardType === 'totals') {
     return (
       <div className="tab-content" id="nav-tabContent">
         <Totals
-          value={timeframe === 'year' ? 15000 : 3000}
+          value={timeframe === 'year' ? totalsValue[0] : totalsValue[1]}
           percent={timeframe === 'year' ? 2 : 7}
           badgeClass="success"
           active

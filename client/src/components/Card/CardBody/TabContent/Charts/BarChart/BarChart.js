@@ -32,6 +32,13 @@ const BarChart = ({ data }) => {
           },
         },
       ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+        },
+      ],
     },
   };
 
