@@ -4,17 +4,38 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const Selector = ({ timeframe }) => {
-  const [months, setMonths] = useState([]);
-  const [currentYear, setCurrentYear] = useState();
+  const [availableMonths, setAvailableMonths] = useState([]);
+  const [availableYears, setAvailableYears] = useState();
 
   useEffect(() => {
     const fetchCurrent = async () => {
       try {
-        // TODO: call backend function that only sends months and year
-        const res = await axios.get('http://localhost:9000/current/latest');
-        console.log(res.data.availableYears[0].distinctYear);
-        // setMonths(res.data.months);
-        // setCurrentYear(res.data.currentYear);
+        const monthByName = [];
+        const months = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ];
+
+        const yearRes = await axios.get('http://localhost:9000/list/year');
+        const monthRes = await axios.get('http://localhost:9000/list/month');
+
+        for (const month of monthRes.data.availableMonths) {
+          const monthName = months[month - 1];
+          monthByName.push(monthName);
+        }
+
+        setAvailableYears(yearRes.data.availableYears);
+        setAvailableMonths(monthByName);
       } catch (error) {
         console.log(error);
       }
@@ -22,11 +43,23 @@ const Selector = ({ timeframe }) => {
     fetchCurrent();
   }, []);
 
-  if (timeframe === 'month') {
+  if (timeframe === 'year') {
     return (
-      <option defaultValue={months[months.length - 1]}>
-        {months[months.length - 1]}
-      </option>
+      <select className="form-select" aria-label="year-select">
+        {availableYears &&
+          availableYears.map((year, idx) => {
+            return <option key={idx}>{year}</option>;
+          })}
+      </select>
+    );
+  } else if (timeframe === 'month') {
+    return (
+      <select className="form-select" aria-label="month-select">
+        {availableMonths &&
+          availableMonths.map((month, idx) => {
+            return <option key={idx}>{month}</option>;
+          })}
+      </select>
     );
   } else {
     return <p>test</p>;
