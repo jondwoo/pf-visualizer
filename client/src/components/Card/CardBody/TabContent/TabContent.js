@@ -40,7 +40,7 @@ const TabContent = () => {
       </div>
     );
   } else if (cardType === 'line-chart') {
-    return <LineChart data={[100, 263, 67, 379, 50]} />;
+    return <LineChart data={[-100, -231, 167, -379, -70]} />;
   } else if (cardType === 'doughnut-chart') {
     return (
       <div className="tab-content" id="nav-tabContent">

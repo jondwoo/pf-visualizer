@@ -16,9 +16,10 @@ const DoughnutChart = ({ data, active, show }) => {
         datasets: [
           {
             data: data,
-            backgroundColor: ['rgba(44, 124, 229, 1)', 'rgba(44, 124, 229, 1)'],
-            borderWidth: 0,
+            backgroundColor: ['#2c7ce5', '#d2ddec'],
+            borderWidth: 4,
             pointHitRadius: 150,
+            borderColor: '#152e4d',
           },
         ],
       });
