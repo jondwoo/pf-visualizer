@@ -63,7 +63,7 @@ const createByCsv = async (req, res, next) => {
   }
 };
 
-const getCurrentYearData = async (req, res, next) => {
+const getCurrentYearData = async (req, res) => {
   const currentYear = new Date().getFullYear();
 
   const startDate = `01-01-${currentYear}`;
@@ -95,12 +95,11 @@ const getCurrentYearData = async (req, res, next) => {
       // months are 0 based (0 = jan)
       months.push(transaction.date.getMonth());
     }
-    const uniqueMonths = [...new Set(months)];
-
+    const uniqueMonths = [...new Set(months)].map((month) => ++month);
     // group documents within the same month for that year
     for (const month of uniqueMonths) {
-      const startDate = `${month + 1}-01-${currentYear}`;
-      const endDate = `${month + 1}-31-${currentYear}`;
+      const startDate = `${month}-01-${currentYear}`;
+      const endDate = `${month}-31-${currentYear}`;
 
       const transactions = await Transaction.find({
         date: {
@@ -109,12 +108,45 @@ const getCurrentYearData = async (req, res, next) => {
         },
       });
 
-      monthlyTransactions.push({ [month + 1]: transactions });
+      monthlyTransactions.push({ [month]: transactions });
     }
 
     res.status(200).json({
       status: 'success',
       transactions: monthlyTransactions,
+      // months: uniqueMonths,
+      // currentYear: currentYear,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'failure',
+      error: error.message,
+    });
+  }
+};
+
+const getLatestData = async (req, res) => {
+  let availableYears;
+
+  try {
+    availableYears = await Transaction.aggregate([
+      {
+        $project: {
+          year: { $year: '$date' },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          distinctYear: { $addToSet: { year: '$year' } },
+        },
+      },
+    ]);
+
+    console.log(availableYears);
+    res.status(200).json({
+      status: 'success',
+      availableYears: availableYears,
     });
   } catch (error) {
     return res.status(500).json({
@@ -127,3 +159,4 @@ const getCurrentYearData = async (req, res, next) => {
 exports.createByEntry = createByEntry;
 exports.createByCsv = createByCsv;
 exports.getCurrentYearData = getCurrentYearData;
+exports.getLatestData = getLatestData;
