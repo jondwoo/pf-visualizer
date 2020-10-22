@@ -107,7 +107,6 @@ const getCurrentYearData = async (req, res) => {
           $lte: new Date(new Date(endDate).setHours('23', '59', '59')),
         },
       });
-
       monthlyTransactions.push({ [month]: transactions });
     }
 
@@ -125,7 +124,7 @@ const getCurrentYearData = async (req, res) => {
   }
 };
 
-const getLatestData = async (req, res) => {
+const getYearList = async (req, res) => {
   let availableYears;
 
   try {
@@ -138,15 +137,46 @@ const getLatestData = async (req, res) => {
       {
         $group: {
           _id: null,
-          distinctYear: { $addToSet: { year: '$year' } },
+          distinctYear: { $addToSet: '$year' },
         },
       },
     ]);
 
-    console.log(availableYears);
+    const distinctYears = availableYears[0].distinctYear;
     res.status(200).json({
       status: 'success',
-      availableYears: availableYears,
+      availableYears: distinctYears.sort((a, b) => b - a),
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'failure',
+      error: error.message,
+    });
+  }
+};
+
+const getMonthList = async (req, res) => {
+  let availableMonths;
+
+  try {
+    availableMonths = await Transaction.aggregate([
+      {
+        $project: {
+          month: { $month: '$date' },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          distinctMonth: { $addToSet: '$month' },
+        },
+      },
+    ]);
+
+    const distinctMonths = availableMonths[0].distinctMonth;
+    res.status(200).json({
+      status: 'success',
+      availableMonths: distinctMonths.sort((a, b) => b - a),
     });
   } catch (error) {
     return res.status(500).json({
@@ -159,4 +189,5 @@ const getLatestData = async (req, res) => {
 exports.createByEntry = createByEntry;
 exports.createByCsv = createByCsv;
 exports.getCurrentYearData = getCurrentYearData;
-exports.getLatestData = getLatestData;
+exports.getYearList = getYearList;
+exports.getMonthList = getMonthList;

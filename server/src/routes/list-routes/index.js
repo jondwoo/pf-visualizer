@@ -1,14 +1,14 @@
 const { Router } = require('express');
 
 const {
-  getCurrentYearData,
-  getLatestData,
+  getYearList,
+  getMonthList,
 } = require('../../controllers/transaction-controllers');
 
 const router = new Router();
 
-router.get('/year', getCurrentYearData);
+router.get('/year', getYearList);
 
-router.get('/latest', getLatestData);
+router.get('/month', getMonthList);
 
 module.exports = router;

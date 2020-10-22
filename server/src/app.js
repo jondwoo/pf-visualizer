@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const uploadRoutes = require('./routes/upload-routes');
-const currentRoutes = require('./routes/current-routes');
+const listRoutes = require('./routes/list-routes');
 const app = express();
 const PORT = 9000;
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/upload', uploadRoutes);
-app.use('/current', currentRoutes);
+app.use('/list', listRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
