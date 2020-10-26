@@ -28,7 +28,7 @@ app.use((error, req, res, next) => {
 });
 
 const uri = `
-mongodb+srv://jondwoo:dTIu6tscHYmB4f1I@cluster0.fmo1o.gcp.mongodb.net/pf-visualizer?retryWrites=true&w=majority
+mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fmo1o.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority
 `;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.set('useFindAndModify', false);

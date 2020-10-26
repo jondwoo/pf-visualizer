@@ -124,59 +124,30 @@ const getCurrentYearData = async (req, res) => {
   }
 };
 
-const getYearList = async (req, res) => {
-  let availableYears;
+const getTimeData = async (req, res) => {
+  let timeframe;
 
   try {
-    availableYears = await Transaction.aggregate([
+    timeframe = await Transaction.aggregate([
       {
         $project: {
           year: { $year: '$date' },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          distinctYear: { $addToSet: '$year' },
-        },
-      },
-    ]);
-
-    const distinctYears = availableYears[0].distinctYear;
-    res.status(200).json({
-      status: 'success',
-      availableYears: distinctYears.sort((a, b) => b - a),
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: 'failure',
-      error: error.message,
-    });
-  }
-};
-
-const getMonthList = async (req, res) => {
-  let availableMonths;
-
-  try {
-    availableMonths = await Transaction.aggregate([
-      {
-        $project: {
           month: { $month: '$date' },
         },
       },
       {
         $group: {
-          _id: null,
-          distinctMonth: { $addToSet: '$month' },
+          _id: { year: '$year' },
+          months: {
+            $addToSet: { month: '$month' },
+          },
         },
       },
     ]);
 
-    const distinctMonths = availableMonths[0].distinctMonth;
     res.status(200).json({
       status: 'success',
-      availableMonths: distinctMonths.sort((a, b) => b - a),
+      timeframe: timeframe,
     });
   } catch (error) {
     return res.status(500).json({
@@ -189,5 +160,4 @@ const getMonthList = async (req, res) => {
 exports.createByEntry = createByEntry;
 exports.createByCsv = createByCsv;
 exports.getCurrentYearData = getCurrentYearData;
-exports.getYearList = getYearList;
-exports.getMonthList = getMonthList;
+exports.getTimeData = getTimeData;
