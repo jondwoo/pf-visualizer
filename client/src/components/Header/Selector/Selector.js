@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
-
 import PropTypes from 'prop-types';
+import Select from 'react-select';
+
+import { sortDesc } from '../../../util/index';
 
 const Selector = ({ timeframe }) => {
-  const [availableMonths, setAvailableMonths] = useState([]);
-  const [availableYears, setAvailableYears] = useState();
-  const [selectedYear, setSelectedYear] = useState();
+  const [monthOptionTemplate, setMonthOptionTemplate] = useState();
+  const [yearOptionTemplate, setYearOptionTemplate] = useState();
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
-  const getDefaultMonthAndYear = (timeData) => {
-    const monthName = [
+  const [apiData, setApiData] = useState();
+
+  const monthName = useMemo(() => {
+    return [
       'January',
       'February',
       'March',
@@ -23,92 +27,119 @@ const Selector = ({ timeframe }) => {
       'November',
       'December',
     ];
+  }, []);
 
-    const years = [];
-    const monthObjList = [];
-    const months = [];
-    const monthListByName = [];
+  const getYearOptions = useCallback(() => {
+    if (apiData) {
+      const years = apiData.map((entry) => {
+        return entry._id.year;
+      });
 
-    for (const year of timeData.data.timeframe) {
-      years.push(year._id.year);
-    }
+      const sortedYears = sortDesc(years);
 
-    const sortedYears = years.sort((a, b) => b - a);
+      const yearOptions = [];
 
-    for (const year of timeData.data.timeframe) {
-      if (year._id.year === sortedYears[0]) {
-        monthObjList.push(year.months);
+      for (const year of sortedYears) {
+        yearOptions.push({
+          value: year,
+          label: year,
+        });
       }
+
+      return yearOptions;
     }
+    // return [{ value: 'year', label: 'Year' }];
+    return null;
+  }, [apiData]);
 
-    for (const month of monthObjList[0]) {
-      months.push(month.month);
-    }
+  const getMonthOptions = useCallback(
+    (year) => {
+      if (apiData) {
+        const monthObjList = [];
+        const monthList = [];
+        const monthByName = [];
 
-    const sortedMonths = months.sort((a, b) => b - a);
+        for (const entry of apiData) {
+          if (entry._id.year === parseInt(year)) {
+            monthObjList.push(entry.months);
+          }
+        }
 
-    for (const month of sortedMonths) {
-      monthListByName.push(monthName[month - 1]);
-    }
+        for (const monthObj of monthObjList[0]) {
+          monthList.push(monthObj.month);
+        }
 
-    return {
-      years: sortedYears,
-      months: monthListByName,
-    };
+        const sortedMonthList = sortDesc(monthList);
+
+        for (const month of sortedMonthList) {
+          monthByName.push(monthName[month - 1]);
+        }
+
+        const monthOptions = [];
+
+        for (const month of monthByName) {
+          monthOptions.push({
+            value: month,
+            label: month,
+          });
+        }
+
+        return monthOptions;
+      }
+
+      // return [{ value: 'month', label: 'Month' }];
+      return null;
+    },
+    [monthName, apiData],
+  );
+
+  const handleChange = ({ value }) => {
+    setSelectedYear(value);
   };
 
+  // set api data
   useEffect(() => {
-    const fetchCurrent = async () => {
+    const fetchApiData = async () => {
       try {
         const timeData = await axios.get('http://localhost:9000/list/timeData');
-
-        const defaultValues = getDefaultMonthAndYear(timeData);
-
-        setAvailableYears(defaultValues.years);
-        setAvailableMonths(defaultValues.months);
+        setApiData(timeData.data.timeframe);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchCurrent();
+    fetchApiData();
   }, []);
 
-  const handleInput = (e) => {
-    console.log(e.target.value);
-  };
+  // extract available months based on selected year
+  useEffect(() => {
+    const yearOptions = getYearOptions();
+    setYearOptionTemplate(yearOptions);
+
+    const monthOptions = getMonthOptions(selectedYear);
+    setMonthOptionTemplate(monthOptions);
+  }, [apiData, getYearOptions, getMonthOptions, selectedYear]);
 
   if (timeframe === 'year') {
-    return (
-      <select
-        onChange={(e) => handleInput(e)}
-        className="form-select"
-        aria-label="year-select"
-      >
-        {availableYears ? (
-          availableYears.map((year, idx) => {
-            return (
-              <option value={year} key={idx}>
-                {year}
-              </option>
-            );
-          })
-        ) : (
-          <option>Year</option>
-        )}
-      </select>
-    );
+    if (yearOptionTemplate) {
+      return (
+        <Select
+          options={yearOptionTemplate}
+          onChange={handleChange}
+          defaultValue={yearOptionTemplate[0]}
+        />
+      );
+    }
+    return <Select />;
   } else if (timeframe === 'month') {
-    return (
-      <select className="form-select" aria-label="month-select">
-        {availableMonths ? (
-          availableMonths.map((month, idx) => {
-            return <option key={idx}>{month}</option>;
-          })
-        ) : (
-          <option>Month</option>
-        )}
-      </select>
-    );
+    if (monthOptionTemplate) {
+      return (
+        <Select
+          options={monthOptionTemplate}
+          // defaultValue={monthOptionTemplate[0]}
+        />
+      );
+    }
+    return <Select />;
   } else {
     return <p>test</p>;
   }
@@ -119,3 +150,7 @@ export default Selector;
 Selector.propTypes = {
   timeframe: PropTypes.string,
 };
+
+// TODO: default selected year not showing
+// months not changing
+// refactor to NOT get initial values. set values when user selects a year

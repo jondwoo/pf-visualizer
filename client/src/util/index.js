@@ -7,3 +7,7 @@ export const fixDecimals = (data) => {
   }
   return data;
 };
+
+export const sortDesc = (data) => {
+  return data.sort((a, b) => b - a);
+};
